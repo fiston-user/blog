@@ -3,6 +3,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
 import Comments from "@/components/comments";
 import rehypePrettyCode from "rehype-pretty-code";
+import SocialShare from "@/components/social-share";
 
 type Props = {
   params: Promise<{
@@ -22,6 +23,7 @@ export async function generateMetadata({ params }: Props) {
 export default async function Post({ params }: Props) {
   const { id } = await params;
   const post = await getPostData(id);
+  const postUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/posts/${id}`;
 
   const options = {
     mdxOptions: {
@@ -49,6 +51,7 @@ export default async function Post({ params }: Props) {
         </div>
       </div>
       <MDXRemote source={post.content} options={options} />
+      <SocialShare url={postUrl} title={post.title} />
       <Comments />
     </article>
   );
