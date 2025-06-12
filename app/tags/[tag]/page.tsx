@@ -39,7 +39,7 @@ export default async function TagPage({ params }: Props) {
   return (
     <section className="pt-12">
       <h2 className="text-4xl font-bold tracking-tighter mb-8">
-        Posts tagged with "{decodedTag}"
+        Posts tagged with &quot;{decodedTag}&quot;
       </h2>
       <ul className="space-y-8">
         {posts.map(({ id, date, title, description }) => (
