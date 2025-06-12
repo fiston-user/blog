@@ -1,0 +1,61 @@
+# Overview
+This document outlines the requirements for a modern, fast, and content-focused blog website. The primary goal is to provide an excellent reading experience and an easy-to-manage platform for publishing articles. The target audience is developers and tech enthusiasts. The blog's value comes from high-quality technical content and a clean, minimalist design.
+
+# Core Features (MVP)
+- **Homepage:** Displays a paginated list of the most recent blog posts with titles, summaries, and publication dates.
+- **Article Pages:** Each blog post will have a unique, SEO-friendly URL. The page will render the article content from Markdown (MDX) files, including formatted code blocks.
+- **Content Management:** Articles will be managed as local MDX files within the project repository. This allows for version control and a simple, developer-centric workflow.
+- **Basic Navigation:** A simple header with links to "Home" and an "About" page.
+- **Responsive Design:** The layout will be fully responsive and optimized for reading on all devices, from desktops to mobile phones.
+- **SEO Foundations:** Automatic generation of meta tags (title, description) for each article page to ensure good search engine visibility.
+
+# User Experience
+- **User Persona:** The primary user is a "Curious Developer" who discovers the blog through search engines or social media. They value well-written, scannable content and a fast, ad-free reading experience.
+- **Key User Flows:**
+  1. A user lands on the homepage and sees a list of recent articles.
+  2. The user clicks on an article title and navigates to the article page.
+  3. The user reads the article.
+  4. The user navigates back to the homepage or to the "About" page.
+- **UI/UX Considerations:** The design will be minimalist, prioritizing typography and readability. A clear visual hierarchy will guide the user through the content.
+
+# Technical Architecture
+- **Framework:** Next.js (App Router) for its performance benefits and hybrid rendering capabilities.
+- **Rendering Strategy:** Static Site Generation (SSG) for all blog articles and the homepage to ensure fast load times and excellent SEO.
+- **Content Source:** Articles will be stored as `.mdx` files in a `content/posts` directory. A helper utility will parse these files, extract frontmatter (metadata like title, date), and provide the content to the Next.js pages.
+- **Styling:** Tailwind CSS for a utility-first styling approach, allowing for rapid and consistent design implementation.
+- **Deployment:** The site will be deployed on Vercel for seamless integration with Next.js, automatic deployments, and global CDN.
+
+# Development Roadmap
+- **MVP Requirements:**
+  - Set up the Next.js project with TypeScript and Tailwind CSS.
+  - Create the main application layout, including a simple header and footer.
+  - Implement a utility to read and parse MDX files from the filesystem.
+  - Develop the homepage to fetch and display a list of all posts.
+  - Create dynamic routes to render individual blog posts.
+  - Style the homepage and article pages for a clean, readable experience.
+  - Create a simple "About" page with static content.
+- **Future Enhancements (Post-MVP):**
+  - Search functionality.
+  - Categorization and tagging system.
+  - RSS feed generation.
+  - Comments section (e.g., using Giscus or a similar service).
+  - Light/dark mode toggle.
+  - Newsletter subscription form.
+
+# Logical Dependency Chain
+1.  **Project Setup:** Initialize the Next.js project and configure base dependencies.
+2.  **Layout & UI Shell:** Build the main layout component, including navigation. This provides the visual structure for all pages.
+3.  **Content Pipeline:** Develop the logic to read and parse MDX files. This is the core dependency for displaying any content.
+4.  **Article Page:** Create the dynamic page for rendering a single post. This validates the content pipeline.
+5.  **Homepage:** Build the homepage to list all posts, which depends on the content pipeline being functional.
+6.  **Static Pages:** Add the "About" page.
+7.  **Deployment:** Deploy the MVP to Vercel.
+
+# Risks and Mitigations
+- **Risk:** Scope creep; adding too many features to the MVP.
+  - **Mitigation:** Strictly adhere to the core features defined in this PRD. Defer all non-essential features to the "Future Enhancements" list.
+- **Risk:** Over-engineering the content parsing logic.
+  - **Mitigation:** Use well-established libraries like `gray-matter` and `next-mdx-remote` to handle MDX parsing, rather than building a custom solution from scratch.
+
+# Appendix
+- N/A for MVP. 
