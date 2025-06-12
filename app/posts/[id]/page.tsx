@@ -2,6 +2,7 @@ import { getPostData } from "@/lib/posts";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
 import Comments from "@/components/comments";
+import rehypePrettyCode from "rehype-pretty-code";
 
 type Props = {
   params: Promise<{
@@ -22,6 +23,12 @@ export default async function Post({ params }: Props) {
   const { id } = await params;
   const post = await getPostData(id);
 
+  const options = {
+    mdxOptions: {
+      rehypePlugins: [rehypePrettyCode],
+    },
+  };
+
   return (
     <article className="prose lg:prose-xl dark:prose-invert">
       <h1>{post.title}</h1>
@@ -41,7 +48,7 @@ export default async function Post({ params }: Props) {
           ))}
         </div>
       </div>
-      <MDXRemote source={post.content} />
+      <MDXRemote source={post.content} options={options} />
       <Comments />
     </article>
   );
