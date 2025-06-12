@@ -8,7 +8,7 @@ const POSTS_PER_PAGE = 5;
 export default async function Home({
   searchParams,
 }: {
-  searchParams?: { page?: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
 }) {
   const allPostsData = getSortedPostsData();
   const currentPage = Number(searchParams?.page) || 1;
