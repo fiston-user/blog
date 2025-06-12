@@ -5,13 +5,11 @@ import Link from "next/link";
 
 const POSTS_PER_PAGE = 5;
 
-type PageProps = {
-  searchParams?: {
-    page?: string;
-  };
-};
-
-export default function Home({ searchParams }: PageProps) {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams?: { page?: string };
+}) {
   const allPostsData = getSortedPostsData();
   const currentPage = Number(searchParams?.page) || 1;
   const totalPages = Math.ceil(allPostsData.length / POSTS_PER_PAGE);
